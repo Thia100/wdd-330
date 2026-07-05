@@ -9,7 +9,7 @@ function addProductToCart(product) {
     cart = [];
   }
 
-  const result = cart.find((item) => item.Id === item.Id);
+  const result = cart.find((item) => item.Id === product.Id);
   if (result) {
     alert("Item already added");
     return;
