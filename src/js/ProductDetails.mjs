@@ -12,14 +12,14 @@ export default class ProductDetails {
         this.renderProductDetails();
 
         document
-            .getElementById('addToCart')
-            .addEventListener('click', this.addToCart.bind(this));
+            .getElementById("addToCart")
+            .addEventListener('click', this.addProductToCart.bind(this));
     }
 
-    addToCart() {
-        let cart = getLocalStorage('so-cart') || [];
+    addProductToCart() {
+        let cart = getLocalStorage("so-cart") || [];
         cart.push(this.product);
-        setLocalStorage('so-cart', cart);
+        setLocalStorage("so-cart", cart);
     }
 
     renderProductDetails() {
