@@ -1,15 +1,22 @@
 import ProductData from "./ProductData.mjs";
 import ProductList from "../ProductList.mjs";
-import { getParam, loadHeaderFooter } from "./utils.mjs";
+import { loadHeaderFooter, getParam } from "./utils.mjs";
 
-const category = getParam("category") || "tents";
+loadHeaderFooter();
 
-const dataSource = new ProductData(category);
+const category = getParam("category");
+
+const categoryName = category
+    .replace("-", " ")
+    .replace(/\b\w/g, (letter) => letter.toUpperCase());
+
+const title = document.querySelector(".products h2");
+title.textContent = `Top Products: ${categoryName}`;
+
+const dataSource = new ProductData();
 
 const listElement = document.querySelector(".product-list");
 
 const productList = new ProductList(category, dataSource, listElement);
 
 productList.init();
-
-loadHeaderFooter();
