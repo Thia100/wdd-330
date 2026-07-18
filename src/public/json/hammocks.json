@@ -1,0 +1,44 @@
+{
+    "Count": 3,
+    "Page": 1,
+    "PerPage": 24,
+    "Title": "Search for \"hammocks\"",
+    "Result": [
+        {
+            "Id": "HAM001",
+            "Name": "ENO DoubleNest Hammock",
+            "NameWithoutBrand": "DoubleNest Hammock",
+            "Brand": {
+                "Name": "ENO"
+            },
+            "Images": {
+                "PrimarySmall": "/images/banner-sm.jpg"
+            },
+            "FinalPrice": 69.99
+        },
+        {
+            "Id": "HAM002",
+            "Name": "Kammok Roo Double Hammock",
+            "NameWithoutBrand": "Roo Double Hammock",
+            "Brand": {
+                "Name": "Kammok"
+            },
+            "Images": {
+                "PrimarySmall": "/images/banner-sm.jpg"
+            },
+            "FinalPrice": 79.99
+        },
+        {
+            "Id": "HAM003",
+            "Name": "Wise Owl Outfitters Hammock",
+            "NameWithoutBrand": "Camping Hammock",
+            "Brand": {
+                "Name": "Wise Owl"
+            },
+            "Images": {
+                "PrimarySmall": "/images/banner-sm.jpg"
+            },
+            "FinalPrice": 39.99
+        }
+    ]
+}
