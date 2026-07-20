@@ -1,4 +1,4 @@
-import { getLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 
 export default class ShoppingCart {
     constructor() {
@@ -12,10 +12,26 @@ export default class ShoppingCart {
     renderCartContents() {
         const htmlItems = this.cart.map((item) => this.cartItemTemplate(item));
         document.querySelector(".product-list").innerHTML = htmlItems.join("");
+
+        document.querySelectorAll(".remove-item").forEach((button) => {
+            button.addEventListener("click", (event) => {
+                this.removeItem(event.target.dataset.id);
+            });
+        });
+    }
+
+    removeItem(id) {
+        this.cart = this.cart.filter((item) => item.Id !== id);
+
+        setLocalStorage("so-cart", this.cart);
+
+        this.renderCartContents();
     }
 
     cartItemTemplate(item) {
         return `<li class="cart-card divider"> 
+            <span class="remove-item" data-id="${item.Id}">X</span>
+
             <a href="#" class="cart-card__image">
                 <img src="${item.Images.PrimaryMedium}" alt="${item.Name}"/>
             </a>
