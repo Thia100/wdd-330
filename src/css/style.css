@@ -261,3 +261,53 @@ footer {
   font-size: var(--small-font);
   padding: 1em;
 }
+
+/* Category styles */
+.categories {
+  margin-top: 2rem;
+  padding: 1rem;
+}
+
+.category-list {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  list-style: none;
+}
+
+.category-list li {
+  text-align: center;
+  width: 150px;
+}
+
+.category-list a {
+  text-decoration: none;
+  color: var(--dark-grey);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.category-list img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+.category-list span {
+  margin-top: 0.5rem;
+  font-weight: bold;
+}
+
+/* Discount indictor */
+.discount {
+  display: inline-block;
+  background-color: var(--tertiary-color);
+  color: white;
+  padding: 0.3em 0.6em;
+  border-radius: 5px;
+  font-size: var(--small-font);
+  font-weight: bold;
+  margin-top: 0.5em;
+}

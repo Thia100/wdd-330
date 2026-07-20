@@ -1,12 +1,22 @@
 import { renderListWithTemplate } from "./js/utils.mjs";
 
 function productCardTemplate(product, category) {
+    const discount =
+        product.FinalPrice < product.SuggestedRetailPrice
+            ? `<span class="discount">${Math.round(
+                ((product.SuggestedRetailPrice - product.FinalPrice) /
+                    product.SuggestedRetailPrice) *
+                    100
+             )}% Off</span>`
+            : "";
+    
     return `<li class="product-card">
     <a href="../product_pages/?product=${product.Id}&category=${category}">
       <img src="${product.Images.PrimaryMedium}" alt="Image of ${product.Name}">
       <h2 class="card__brand">${product.Brand.Name}</h2>
       <h3 class="card__name">${product.Name}</h3>
       <p class="product-card__price">$${product.FinalPrice}</p>
+      ${discount}
     </a>
   </li>`;
 }
