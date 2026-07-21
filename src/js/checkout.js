@@ -10,3 +10,8 @@ checkout.init();
 document.querySelector("#zip").addEventListener("blur", () => {
     checkout.calculateOrderTotal();
 });
+
+document.querySelector("#checkout-form").addEventListener("submit", (event) => {
+    event.preventDefault();
+    checkout.checkout(event.target);
+});
