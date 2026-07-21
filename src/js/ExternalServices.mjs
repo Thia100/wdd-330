@@ -1,7 +1,5 @@
 const baseURL = import.meta.env.VITE_SERVER_URL;
 
-console.log("BASE URL:", baseURL);
-
 function convertToJson(res) {
   if (res.ok) {
     return res.json();
@@ -37,6 +35,13 @@ export default class ExternalServices {
     };
 
     const response = await fetch(`${baseURL}checkout`, options);
-    return await convertToJson(response);
+
+    console.log("FETCH RESPONSE:", response);
+
+    const data = await convertToJson(response);
+
+    console.log("JSON RESPONSE:", data);
+
+    return data;
   }
 }
