@@ -7,6 +7,7 @@ export default class ShoppingCart {
 
     init() {
         this.renderCartContents();
+        this.renderCartTotal();
     }
 
     renderCartContents() {
@@ -26,6 +27,39 @@ export default class ShoppingCart {
         setLocalStorage("so-cart", this.cart);
 
         this.renderCartContents();
+        this.renderCartTotal();
+    }
+
+    renderCartTotal() {
+        if (this.cart.length > 0) {
+            const cartFooter = document.querySelector(".cart-footer");
+
+            const subtotal = this.cart.reduce(
+                (sum, item) => sum + item.FinalPrice,
+                0
+            );
+
+            const tax = subtotal * 0.06;
+            const shipping = 10;
+            const total = subtotal + tax + shipping;
+
+            document.querySelector(".cart-subtotal").textContent =
+                `Subtotal: $${subtotal.toFixed(2)}`;
+            
+            document.querySelector(".cart-tax").textContent =
+                `Tax:  $${tax.toFixed(2)}`;
+            
+            document.querySelector(".cart-shipping").textContent =
+                `Shipping Estimate: $${shipping.toFixed(2)}`;
+            
+            document.querySelector(".cart-total").textContent =
+                `Order Total: $${total.toFixed(2)}`;
+            
+            cartFooter.classList.remove("hide");
+
+        } else {
+            document.querySelector(".cart-footer").classList.add("hide");
+        }
     }
 
     cartItemTemplate(item) {
