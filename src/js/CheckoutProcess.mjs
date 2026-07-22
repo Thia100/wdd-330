@@ -74,8 +74,16 @@ export default class CheckoutProcess {
 
         const service = new ExternalServices();
 
-        const result = await service.checkout(order);
+        try {
+            const result = await service.checkout(order);
 
-        return result;
+            localStorage.removeItem(this.key);
+            window.location.href = "./success.html";
+            
+            return result;
+        } catch (err) {
+            throw err;
+        }
+
     }
 }

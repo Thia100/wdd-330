@@ -1,4 +1,4 @@
-import { loadHeaderFooter } from "./utils.mjs";
+import { loadHeaderFooter, alertMessage } from "./utils.mjs";
 import CheckoutProcess from "./CheckoutProcess.mjs";
 
 loadHeaderFooter();
@@ -13,7 +13,9 @@ document.querySelector("#zip").addEventListener("blur", (event) => {
 
     if (!/^\d{5}$/.test(zip)) {
         message.textContent = "Please enter a valid 5 digit zip code.";
+        message.classList.remove("success");
         message.classList.add("error");
+        alertMessage(message.textContent);
         return;
     }
 
@@ -30,7 +32,9 @@ document.querySelector("#checkout-form").addEventListener("submit", async (event
 
     if (!/^\d{13,19}$/.test(cardNumber)) {
         message.textContent = "Please enter a valid card number.";
+        message.classList.remove("success");
         message.classList.add("error");
+        alertMessage(message.textContent);
         return;
     }
 
@@ -42,9 +46,11 @@ document.querySelector("#checkout-form").addEventListener("submit", async (event
         message.classList.add("success");
 
     } catch (error) {
-        message.textContent = "There was an error processing your order. Please try again.";
+        message.textContent = Object.values(error.message).join(", ");
         message.classList.remove("success");
         message.classList.add("error");
+
+        alertMessage(message.textContent);
 
     }
 });
