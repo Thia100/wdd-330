@@ -7,7 +7,7 @@ function packageItems(items) {
             id: item.Id,
             name: item.Name,
             price: item.FinalPrice,
-            quantity: item.quantity
+            quantity: item.quantity || 1
         };
     });
 }
@@ -69,7 +69,7 @@ export default class CheckoutProcess {
         order.orderDate = new Date().toISOString();
         order.orderTotal = this.orderTotal.toFixed(2);
         order.tax = this.tax.toFixed(2);
-        order.shipping = this.shipping;
+        order.shipping = this.shipping.toFixed(2);
         order.items = packageItems(this.list);
 
         const service = new ExternalServices();
