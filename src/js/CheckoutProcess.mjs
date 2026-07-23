@@ -7,7 +7,7 @@ function packageItems(items) {
             id: item.Id,
             name: item.Name,
             price: item.FinalPrice,
-            quantity: item.quantity
+            quantity: item.quantity || 1
         };
     });
 }
@@ -69,13 +69,21 @@ export default class CheckoutProcess {
         order.orderDate = new Date().toISOString();
         order.orderTotal = this.orderTotal.toFixed(2);
         order.tax = this.tax.toFixed(2);
-        order.shipping = this.shipping;
+        order.shipping = this.shipping.toFixed(2);
         order.items = packageItems(this.list);
 
         const service = new ExternalServices();
 
-        const result = await service.checkout(order);
+        try {
+            const result = await service.checkout(order);
 
-        return result;
+            localStorage.removeItem(this.key);
+            window.location.href = "./success.html";
+            
+            return result;
+        } catch (err) {
+            throw err;
+        }
+
     }
 }

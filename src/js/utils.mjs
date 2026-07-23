@@ -79,3 +79,24 @@ export function formDataToJSON(form) {
   const formData = new FormData(form);
   return Object.fromEntries(formData);
 }
+
+export function alertMessage(message, scroll = true) {
+  const main = document.querySelector("main");
+
+  const alert = document.createElement("div");
+  alert.className = "alert";
+  alert.textContent = message;
+
+  main.prepend(alert);
+
+  if (scroll) {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }
+
+  setTimeout(() => {
+    alert.remove();
+  }, 5000);
+}
